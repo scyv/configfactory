@@ -1,0 +1,50 @@
+{
+  "Projects": [
+    {
+      "Name": "test1",
+      "BaseDir": "../test1",
+      "Replacements": [
+        {
+          "Key": "webserverPort",
+          "Value": "3000"
+        },
+        {
+          "Key": "mockserverPort",
+          "Value": "3001"
+        },
+        {
+          "Key": "livereloadPort",
+          "Value": "35223"
+        },
+        {
+          "Key": "additionalCodeLine",
+          "Value": "console.log(\"These lines are added additionally only for \" + 1 + \" project!\");\n// This line, too"
+        }
+      ]
+    },
+    {
+      "Name": "test2",
+      "BaseDir": "../test2",
+      "Replacements": [
+        {
+          "Key": "webserverPort",
+          "Value": "3200"
+        },
+        {
+          "Key": "mockserverPort",
+          "Value": "3201"
+        },
+        {
+          "Key": "livereloadPort",
+          "Value": "35225"
+        }
+      ]
+    }
+  ],
+  "TemplateMappings": [
+    {
+      "From": "masterFile.js",
+      "To": "some/deep/dir/file.js"
+    }
+  ]
+}
