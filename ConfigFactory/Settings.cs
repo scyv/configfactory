@@ -17,15 +17,12 @@ namespace ConfigFactory
             Settings settings = new Settings();
             foreach (string arg in Environment.GetCommandLineArgs())
             {
-                Console.WriteLine(arg);
                 string[] keyValue = arg.Split("=");
                 if (keyValue.Length > 1)
                 {
                     settings.Add(keyValue[0], keyValue[1]);
                 }
             }
-            Console.WriteLine("Settings:");
-            Console.WriteLine(settings.ToString());
             return settings;
 
         }
@@ -35,15 +32,18 @@ namespace ConfigFactory
             this.dict.Add(key, value);
         }
 
-        public object Get(string key)
+        public object Get(string key, object defaultValue)
         {
-            return dict[key];
+            object value = defaultValue;
+            dict.TryGetValue(key, out value);
+            return value;
         }
 
         public override string ToString()
         {
             string str = "";
-            foreach(KeyValuePair<string, object> kvp in dict) {
+            foreach (KeyValuePair<string, object> kvp in dict)
+            {
                 str += (" " + kvp.Key + "=" + kvp.Value + "\n");
             }
             return str;

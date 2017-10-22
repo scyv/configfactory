@@ -12,8 +12,16 @@ namespace ConfigFactory
         {
 
             Settings settings = Settings.createFromArgline();
-            string masterPath = (string)settings.Get(Settings.PARAM_MASTER_PATH);
-
+            string masterPath = (string)settings.Get(Settings.PARAM_MASTER_PATH, "");
+            if (string.IsNullOrEmpty(masterPath))
+            {
+                Console.WriteLine("Usage: ");
+                Console.WriteLine("  dotnet ConfigFactory.dll <options>");
+                Console.WriteLine(" Options:");
+                Console.WriteLine("   -p=path Path to the master data (required, this is where your cf.json lives)");
+                Console.WriteLine("");
+                return;
+            }
             MasterDefinition def;
             using (StreamReader reader = new StreamReader(masterPath + "/cf.json"))
             {
@@ -47,13 +55,8 @@ namespace ConfigFactory
                         }
                         Console.WriteLine();
                     }
-
                 }
-
-
             }
-
-
         }
     }
 }
